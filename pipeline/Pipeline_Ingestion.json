@@ -1,0 +1,294 @@
+{
+	"name": "Pipeline_Ingestion",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_23k",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "accmfs//"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.complaints"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"validateDataConsistency": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Date received",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Date received",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Product",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Product",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Sub-product",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Sub-product",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Issue",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Issue",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Sub-issue",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Sub-issue",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Consumer complaint narrative",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Consumer complaint narrative",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Company public response",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Company public response",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Company",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Company",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "State",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "State",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ZIP code",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ZIP code",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Tags",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Tags",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Consumer consent provided?",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Consumer consent provided?",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Submitted via",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Submitted via",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Date sent to company",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Date sent to company",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Company response to consumer",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Company response to consumer",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Timely response?",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Timely response?",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Consumer disputed?",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Consumer disputed?",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Complaint ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Complaint ID",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_23k",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_23k",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-07-05T03:35:42Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

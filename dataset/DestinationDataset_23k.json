@@ -1,0 +1,17 @@
+{
+	"name": "DestinationDataset_23k",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "complaints"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}
